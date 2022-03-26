@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Simulation</title>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+
+    <script src="./JS/playerMovement.js"></script>
+    <script src="./JS/collide.js"></script>
+    <script src="./JS/ChangeCamera.js"></script>
+</head>
+
+<body>
+    <a-scene physics="debug: true" background="color:#000">
+        <!-- assets -->
+        <a-assets>
+            <a-assets-item id="spaceShip" src="./models/space_ship/scene.gltf">
+            </a-assets-item>
+        </a-assets>
+
+        <!-- player and spaceship -->
+        <!-- <a-camera position="0 0 -0.04933" id="player" movement dynamic-body="mass:0"> -->
+        <a-camera id="player" position="0 0 250" id="player" movement collision camera-change dynamic-body="mass:0">
+
+            <a-entity id="camera-cursor" cursor position="0 0 -2.5"
+                geometry="primitive: ring; radiusInner:0.02; radiusOuter: 0.03" material="color: #fff; shader: flat">
+            </a-entity>
+
+            <a-entity gltf-model="./models/space_ship/scene.gltf" position="0 0 2.54912"
+                rotation="2.923803628552591 0 0" scale="0.01 0.01 0.01" id="SpaceShip"></a-entity>
+
+            <a-entity position="0 3 5" rotation="-20 0 -0.5" active="false" id="third-person"
+                data-aframe-inspector-original-camera="">
+            </a-entity>
+
+        </a-camera>
+
+
+            <!-- sun -->
+            <a-sphere color="yellow" position="0 0 -4760.96287" scale="500 500 500" id="sun" static-body
+                src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fsol.jpg?v=1604296185621">
+            </a-sphere>
+
+
+            <!-- planets -->
+            <a-entity id="planets">
+
+                <!-- mercury -->
+                <a-entity position="0 0 -5500"
+                    animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:80000;">
+                    <a-sphere color="grey" position="0 0 -3054.81697" scale="18 18 18" id="mercury"
+                        src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fmercurio.jpg?v=1604298142259">
+                    </a-sphere>
+                </a-entity>
+
+
+                <!-- venus -->
+                <a-entity position="0 0 -4760"
+                    animation="property: rotation; to:0 -360 0; easing:linear; loop:true; dur:160000;">
+                    <a-sphere color="brown" position="0 0 3600" scale="40 40 40" id="venus"
+                        src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fvenus.jpg?v=1604312437571">
+                    </a-sphere>
+                </a-entity>
+
+                <!-- earth -->
+                <a-entity position="0 0 -4720"
+                    animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:240000;">
+                    <a-sphere color="blue" position="0 0 5000" scale="50 50 50" id="earth"
+                        src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fearth.jpg?v=1604312404511">
+                    </a-sphere>
+                </a-entity>
+
+                <!-- mars -->
+                <a-entity position="0 0 -4720"
+                    animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:320000;">
+                    <a-sphere color="red" position="0 0 -6500" scale="50 50 50" id="mars"
+                        src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fmercurio.jpg?v=1604298142259">
+                    </a-sphere>
+                </a-entity>
+
+            </a-entity>
+
+
+            <a-entity light="color: #fff; intensity: 0.6; castShadow: true" position="-0.5 1 -4760.963"
+                data-aframe-default-light="" aframe-injected=""></a-entity>
+
+            <a-entity light="color: #BBB; type: ambient" position="-0.5 1 -4760.963" data-aframe-default-light=""
+                aframe-injected=""></a-entity>
+    </a-scene>
+</body>
+
+</html>
